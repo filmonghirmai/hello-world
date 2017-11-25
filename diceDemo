@@ -1,0 +1,57 @@
+import java.util.Random;
+
+/**
+ * Author : Filmon Ghirmai
+ * Github : github.com/filmonghirmai
+ * HackerRank : hackerrank.com/skynet21
+ */
+public class RandomIntegers {
+    public static void main(String[] args) {
+        // these variable will hold each rolled dice count
+        int oneCount   = 0;
+        int twoCount   = 0;
+        int threeCount = 0;
+        int fourCount  = 0;
+        int fiveCount  = 0;
+        int sixCount   = 0;
+        Random randomNumbers = new Random();
+        int face ;
+        for (int counter = 1; counter <=20 ; counter++) {
+            // generate a number from 1 to 6 ;
+            face =  1 + randomNumbers.nextInt(6);
+            //put the variable to the switch
+            switch (face){
+            case 1 :
+                oneCount++;
+                break;
+            case 2 :
+                twoCount++;
+                break;
+            case 3 :
+                threeCount++;
+            case 4 :
+                fourCount++;
+                break;
+            case 5 :
+                fiveCount++;
+                break;
+            case 6 :
+                sixCount++;
+                break;
+            }
+
+            System.out.printf("%d",face);
+            if(counter % 5 ==  0)
+                System.out.println();
+        }
+
+        //Printing the counting of the dices
+        System.out.println("ONE   Occurs "  + oneCount);
+        System.out.println("Two   Occurs "  + twoCount);
+        System.out.println("Three Occurs " + threeCount);
+        System.out.println("Four  Occurs "  +  fourCount);
+        System.out.println("Five  Occurs "  + fiveCount);
+        System.out.println("Six   Occurs " + sixCount);
+        
+    }
+}
