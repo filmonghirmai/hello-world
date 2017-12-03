@@ -1,57 +1,77 @@
+import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Author : Filmon Ghirmai
  * Github : github.com/filmonghirmai
  * HackerRank : hackerrank.com/skynet21
  */
-public class RandomIntegers {
-    public static void main(String[] args) {
-        // these variable will hold each rolled dice count
-        int oneCount   = 0;
-        int twoCount   = 0;
-        int threeCount = 0;
-        int fourCount  = 0;
-        int fiveCount  = 0;
-        int sixCount   = 0;
-        Random randomNumbers = new Random();
-        int face ;
-        for (int counter = 1; counter <=20 ; counter++) {
-            // generate a number from 1 to 6 ;
-            face =  1 + randomNumbers.nextInt(6);
-            //put the variable to the switch
-            switch (face){
-            case 1 :
-                oneCount++;
-                break;
-            case 2 :
-                twoCount++;
-                break;
-            case 3 :
-                threeCount++;
-            case 4 :
-                fourCount++;
-                break;
-            case 5 :
-                fiveCount++;
-                break;
-            case 6 :
-                sixCount++;
-                break;
-            }
+public class ArrayDemo {
+    public static int[] arr ;
+    public static int[] arr_copyed;
 
-            System.out.printf("%d",face);
-            if(counter % 5 ==  0)
-                System.out.println();
+    /* A method to copy an array*/
+    public static void copyArrayElements(int[] arr) {
+
+        // first parameter is the array to be copied.
+        // second parameter is the length to be copied.
+        arr_copyed = Arrays.copyOf(arr,arr.length);
+        System.out.println("The copied array ... is ");
+        System.out.println(Arrays.toString(arr_copyed));
+
+    }
+
+    /* A method that prints 5 elements per line*/
+    public static void printFiveElements() {
+        int index_start = 0;
+        int line = arr.length / 5;
+        int left_index = arr.length % 5;
+
+        //Loop to print the exactly 5 elements ...
+        for (int i = 0; i < line; i++) {
+            for (int j = 0; j < 5 ; j++,index_start++) {
+                System.out.print(arr[index_start]);
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+        //loop to print the left elements.
+        for (int i = 0; i < left_index ; i++,index_start++) {
+            System.out.print(arr[index_start]);
+            System.out.print(" ");
+        }
+        System.out.println();
+    }
+
+    /* A method that generate elements for the array*/
+    public static void generateRandomElements(int n) {
+        arr = new int[n];
+
+        // just generate number between 1 and 10 only for simplicity ok.
+        // 10 value is exclusive but we are adding 1 will give us 10
+        // if 0 is generate we also add 1 will so the number will 1-9 .
+        Random r = new Random();
+        for (int i = 0; i < n; i++) {
+            arr[i] = r.nextInt(10) + 1;
         }
 
-        //Printing the counting of the dices
-        System.out.println("ONE   Occurs "  + oneCount);
-        System.out.println("Two   Occurs "  + twoCount);
-        System.out.println("Three Occurs " + threeCount);
-        System.out.println("Four  Occurs "  +  fourCount);
-        System.out.println("Five  Occurs "  + fiveCount);
-        System.out.println("Six   Occurs " + sixCount);
-        
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the number of elements... to generate...");
+        int k = in.nextInt();
+
+        /* First call generateRandomElements(int n ) */
+        generateRandomElements(k);
+
+       /* Second call copyArrayElements(int[] arr) */
+       copyArrayElements(arr);
+
+       /* Finally call printFiveElements(int[] arr) */
+       printFiveElements();
+
+
     }
 }
